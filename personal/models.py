@@ -7,6 +7,9 @@ class Contact(models.Model):
     phone = models.CharField(max_length=20)
     direction = models.TextField(blank=True)
     created = models.DateTimeField(auto_now=True)
-    
+
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
