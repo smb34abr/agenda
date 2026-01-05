@@ -1,0 +1,29 @@
+Proyecto de Agenda Django
+==============
+
+Este es un proyecto Django para gestionar una agenda personal.
+
+Características:
+- Registro de contactos con nombre, email, teléfono y dirección
+- Interfaz administrativa para gestionar los contactos
+- Soporte para español (idioma y zona horaria configurados)
+
+Configuración inicial:
+1. Asegúrate de tener Python y Django instalados
+2. Ejecuta `python manage.py migrate` para crear las tablas de la base de datos
+3. Ejecuta `python manage.py createsuperuser` para crear un usuario administrador
+4. Ejecuta `python manage.py runserver` para iniciar el servidor de desarrollo
+
+Acceso al administrador:
+- URL: http://127.0.0.1:8000/admin/
+- Usa las credenciales del usuario administrador creado
+
+Despliegue en producción:
+- Configura variables de entorno para producción
+- Usa un servidor WSGI como Gunicorn
+- Configura servidores web como Nginx
+
+Contacto:
+- Autor: Alberto Bernal
+- Email: smb34abr@gmail.com
+- Fecha: 2026-01-05
