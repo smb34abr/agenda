@@ -18,6 +18,10 @@ Acceso al administrador:
 - URL: http://127.0.0.1:8000/admin/
 - Usa las credenciales del usuario administrador creado
 
+Acceso a la agenda:
+- URL: http://127.0.0.1:8000/personal/
+- Usa las credenciales del usuario administrador creado
+
 Despliegue en producción:
 - Configura variables de entorno para producción
 - Usa un servidor WSGI como Gunicorn
