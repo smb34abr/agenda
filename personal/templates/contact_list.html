@@ -23,7 +23,8 @@
 
                     <div class="mb-3 mt-3">
                         <label for="nombre" class="form-label">Nombre Completo</label>
-                        <input type="text" class="form-control" id="nombre" name="name" aria-describedby="emailHelp" required>
+                        <input type="text" class="form-control" id="nombre" name="name" aria-describedby="emailHelp"
+                            required>
                     </div>
 
                     <div class="mb-3">
@@ -32,7 +33,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Telefono</label>
+                        <label for="phone" class="form-label">Teléfono</label>
                         <input type="text" class="form-control" id="phone" name="phone" required>
                     </div>
 
@@ -42,7 +43,7 @@
                         <label for="direction">Dirección</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" id="idGardar" class="btn btn-primary">Guardar</button>
                 </form>
             </div>
 
@@ -53,8 +54,8 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Email</th>
-                            <th>Telefono</th>
-                            <th>Fecha de creacion</th>                            
+                            <th>Teléfono</th>
+                            <th>Fecha de creación</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -64,11 +65,11 @@
                             <td>{{ contact.name }}</td>
                             <td>{{ contact.email }}</td>
                             <td>{{ contact.phone }}</td>
-                            <td>{{ contact.created }}</td>                            
+                            <td>{{ contact.created }}</td>
                             <td>
-                                <a href="editContact/{{ contact.id }}" class="btn btn-primary">Editar</a>                                
+                                <a href="editContact/{{ contact.id }}" class="btn btn-primary">Editar</a>
                                 <a href="deleteContact/{{ contact.id }}" class="btn btn-danger">Eliminar</a>
-                            </td>                            
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -94,13 +95,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         let table = new DataTable('#example', {
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
             },
-        });     
+        });
+
+        const idGardar = document.getElementById('idGardar');
+
+        if (idGardar) {
+            idGardar.addEventListener('click', function (event) {
+                // Evitamos que el formulario se envíe de forma tradicional (recarga de página)
+                event.preventDefault();
+
+                // Buscamos el formulario al que pertenece el botón
+                const formulario = event.target.closest('form');
+
+                Swal.fire({
+                    title: "¡Datos guardados correctamente!",
+                    icon: "success",
+                    draggable: true,
+                    confirmButtonText: "Aceptar"
+                }).then((result) => {
+                    // Si el usuario presiona el botón de la alerta
+                    if (result.isConfirmed && formulario) {
+                        formulario.reset(); // <--- Esta línea limpia todos los campos
+                    }
+                });
+            });
+        }
+
     </script>
 
 </body>
