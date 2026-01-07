@@ -1,4 +1,3 @@
-from os import name
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Contact
@@ -32,10 +31,6 @@ def registrarPersonal(request):
 
     messages.success(request, 'Contacto agregado correctamente')
     return redirect('/')
-
-def edicionContacto(request, id):
-    contact = Contact.objects.get(id=id)
-    return render(request, 'edit_contact.html', {'contact': contact})
 
 def deleteContact(request, id):
     contact = Contact.objects.get(id=id)
