@@ -32,6 +32,10 @@ def registrarPersonal(request):
     messages.success(request, 'Contacto agregado correctamente')
     return redirect('/')
 
+def editContact(request, id):
+    contact = Contact.objects.get(id=id)
+    return render(request, 'edit_contact.html', {'contact': contact})
+
 def deleteContact(request, id):
     contact = Contact.objects.get(id=id)
     contact.delete()
