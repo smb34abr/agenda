@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -17,10 +17,11 @@
     <div class="col-md-4 offset-md-4">
         <form action="/editarContacto/" method="post">
             {% csrf_token %}
-            
+
             <div class="mb-3 mt-3">
                 <label for="nombre" class="form-label">Nombre Completo</label>
-                <input type="text" class="form-control" id="nombre" name="name" value="{{ contact.name }}" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="nombre" name="name" value="{{ contact.name }}"
+                    aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
@@ -29,7 +30,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="phone" class="form-label">Telefono</label>
+                <label for="phone" class="form-label">Teléfono</label>
                 <input type="text" class="form-control" id="phone" name="phone" value="{{ contact.phone }}">
             </div>
 
@@ -39,10 +40,44 @@
                 <label for="direction">Dirección</label>
             </div>
 
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary" id="idGardar">Guardar</button>
         </form>
     </div>
 
+
+    <!-- Añadimos los scripts necesarios -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const idGardar = document.getElementById('idGardar');
+
+        if (idGardar) {
+            idGardar.addEventListener('click', function (event) {
+                // Evitamos que el formulario se envíe de forma tradicional (recarga de página)
+                event.preventDefault();
+
+                // Buscamos el formulario al que pertenece el botón
+                const formulario = event.target.closest('form');
+
+                Swal.fire({
+                    title: "¡Datos guardados correctamente!",
+                    icon: "success",
+                    draggable: true,
+                    confirmButtonText: "Aceptar"
+                }).then((result) => {
+                    // Si el usuario presiona el botón de la alerta
+                    if (result.isConfirmed && formulario) {
+                        formulario.reset(); // <--- Esta línea limpia todos los campos
+                    }
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>

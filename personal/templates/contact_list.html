@@ -78,18 +78,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -104,29 +92,26 @@
             },
         });
 
-        const idGardar = document.getElementById('idGardar');
+       const idGardar = document.getElementById('idGardar');
 
-        if (idGardar) {
-            idGardar.addEventListener('click', function (event) {
-                // Evitamos que el formulario se envíe de forma tradicional (recarga de página)
-                event.preventDefault();
+if (idGardar) {
+    idGardar.addEventListener('click', function(event) {
+        // Evita que el formulario se envíe/recargue automáticamente
+        event.preventDefault(); 
 
-                // Buscamos el formulario al que pertenece el botón
-                const formulario = event.target.closest('form');
-
-                Swal.fire({
-                    title: "¡Datos guardados correctamente!",
-                    icon: "success",
-                    draggable: true,
-                    confirmButtonText: "Aceptar"
-                }).then((result) => {
-                    // Si el usuario presiona el botón de la alerta
-                    if (result.isConfirmed && formulario) {
-                        formulario.reset(); // <--- Esta línea limpia todos los campos
-                    }
-                });
-            });
-        }
+        Swal.fire({
+            title: "¡Datos guardados correctamente!",
+            icon: "success",
+            draggable: true,
+            confirmButtonText: "Aceptar"
+        }).then((result) => {
+            // Si quieres que el formulario se envíe DESPUÉS de cerrar la alerta:
+            if (result.isConfirmed) {
+                 event.target.closest('form').submit(); // Opcional: envía el form manualmente
+            }
+        });
+    });
+}
 
     </script>
 
