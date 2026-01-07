@@ -92,26 +92,26 @@
             },
         });
 
-       const idGardar = document.getElementById('idGardar');
+        const idGardar = document.getElementById('idGardar');
 
-if (idGardar) {
-    idGardar.addEventListener('click', function(event) {
-        // Evita que el formulario se envíe/recargue automáticamente
-        event.preventDefault(); 
+        if (idGardar) {
+            idGardar.addEventListener('click', function (event) {
+                // Evita que el formulario se envíe/recargue automáticamente
+                event.preventDefault();
 
-        Swal.fire({
-            title: "¡Datos guardados correctamente!",
-            icon: "success",
-            draggable: true,
-            confirmButtonText: "Aceptar"
-        }).then((result) => {
-            // Si quieres que el formulario se envíe DESPUÉS de cerrar la alerta:
-            if (result.isConfirmed) {
-                 event.target.closest('form').submit(); // Opcional: envía el form manualmente
-            }
-        });
-    });
-}
+                Swal.fire({
+                    title: "¡Datos guardados correctamente!",
+                    icon: "success",
+                    draggable: true,
+                    confirmButtonText: "Aceptar"
+                }).then((result) => {
+                    // Si quieres que el formulario se envíe DESPUÉS de cerrar la alerta:
+                    if (result.isConfirmed) {
+                        event.target.closest('form').submit(); // Opcional: envía el form manualmente
+                    }
+                });
+            });
+        }
 
     </script>
 

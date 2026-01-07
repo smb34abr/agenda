@@ -36,6 +36,18 @@ def editContact(request, id):
     contact = Contact.objects.get(id=id)
     return render(request, 'edit_contact.html', {'contact': contact})
 
+def updateContact(request, id):
+    if request.method == 'POST':        
+        contact = Contact.objects.get(id=id)
+        contact.name = request.POST.get('name')
+        contact.email = request.POST.get('email')
+        contact.phone = request.POST.get('phone')
+        contact.direction = request.POST.get('direction')
+        contact.save()
+    
+    messages.success(request, 'Contacto actualizado correctamente')
+    return redirect('/')
+
 def deleteContact(request, id):
     contact = Contact.objects.get(id=id)
     contact.delete()

@@ -15,7 +15,7 @@
     <h1 class="text-center mt-2 bg-primary text-white pb-3">Editar contacto</h1>
 
     <div class="col-md-4 offset-md-4">
-        <form action="/editarContacto/" method="post">
+        <form action="/updateContact/{{ contact.id }}" method="post">
             {% csrf_token %}
 
             <div class="mb-3 mt-3">
@@ -58,11 +58,8 @@
 
         if (idGardar) {
             idGardar.addEventListener('click', function (event) {
-                // Evitamos que el formulario se envíe de forma tradicional (recarga de página)
+                // Evita que el formulario se envíe/recargue automáticamente
                 event.preventDefault();
-
-                // Buscamos el formulario al que pertenece el botón
-                const formulario = event.target.closest('form');
 
                 Swal.fire({
                     title: "¡Datos guardados correctamente!",
@@ -70,9 +67,9 @@
                     draggable: true,
                     confirmButtonText: "Aceptar"
                 }).then((result) => {
-                    // Si el usuario presiona el botón de la alerta
-                    if (result.isConfirmed && formulario) {
-                        formulario.reset(); // <--- Esta línea limpia todos los campos
+                    // Si quieres que el formulario se envíe DESPUÉS de cerrar la alerta:
+                    if (result.isConfirmed) {
+                        event.target.closest('form').submit(); // Opcional: envía el form manualmente
                     }
                 });
             });
