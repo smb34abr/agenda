@@ -31,3 +31,10 @@ def registrarPersonal(request):
 
     messages.success(request, 'Contacto agregado correctamente')
     return redirect('/')
+
+def deleteContact(request, id):
+    contact = Contact.objects.get(id=id)
+    contact.delete()
+    messages.success(request, 'Contacto eliminado correctamente')
+    return redirect('/')
+
