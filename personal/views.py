@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Contact
 from .forms import ContactForm
 
@@ -18,3 +19,15 @@ def contact_list_and_create(request):
     'form': form, 
     'contacts': contacts
     })
+
+def registrarPersonal(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        direction = request.POST.get('direction')
+    
+    Contact.objects.create(name=name, email=email, phone=phone, direction=direction)
+
+    messages.success(request, 'Contacto agregado correctamente')
+    return redirect('/')
