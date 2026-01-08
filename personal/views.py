@@ -3,7 +3,7 @@ from django.contrib import messages
 from .models import Contact
 from .forms import ContactForm
 
-# Create your views here.
+# Create yogur views here.
 def contact_list_and_create(request):
 
     if request.method == 'POST':

@@ -52,6 +52,7 @@
                 <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Teléfono</th>
@@ -62,6 +63,7 @@
                     <tbody>
                         {% for contact in contacts %}
                         <tr>
+                            <td>{{ contact.id }}</td>
                             <td>{{ contact.name }}</td>
                             <td>{{ contact.email }}</td>
                             <td>{{ contact.phone }}</td>
